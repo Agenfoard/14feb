@@ -1,3 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Рулетка любви 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      /* Небесно-голубой фон как на карте Таро */
+      background: linear-gradient(135deg, #87ceeb, #e0f4ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 32px 24px 36px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      border: 4px solid #f4a460;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: #2b5b84; /* Глубокий синий */
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #4682b4;
+      margin-bottom: 24px;
+    }
+
+    .wheel-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 24px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      z-index: 10;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      /* Золотисто-оранжевая рамка и красный контур */
+      border: 12px solid #cd5c5c;
+      box-shadow: inset 0 0 0 4px #daa520, 0 8px 20px rgba(0,0,0,0.2);
+      background: conic-gradient(
+        #f4a460 0deg 45deg,
+        #ffdead 45deg 90deg,
+        #f4a460 90deg 135deg,
+        #ffdead 135deg 180deg,
+        #f4a460 180deg 225deg,
+        #ffdead 225deg 270deg,
+        #f4a460 270deg 315deg,
+        #ffdead 315deg 360deg
+      );
+      position: relative;
+      overflow: hidden;
+      /* Время вращения 6 секунд */
+      transition: transform 6s cubic-bezier(.17,.67,.1,1);
+    }
+
+    /* Стили для текста в секторах */
+    .sector-text {
+      position: absolute;
+      width: 50%;
+      height: 40px;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0% 50%;
+      text-align: right;
+      padding-right: 25px;
+      font-weight: bold;
+      color: #8b4513; /* Коричневый текст */
+      font-size: 13px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    /* Позиционируем каждое слово ровно по центру сектора (22.5 градуса — середина 45-градусного сектора) */
+    .s0 { transform: translateY(-50%) rotate(-67.5deg); }
+    .s1 { transform: translateY(-50%) rotate(-22.5deg); }
+    .s2 { transform: translateY(-50%) rotate(22.5deg); }
+    .s3 { transform: translateY(-50%) rotate(67.5deg); }
+    .s4 { transform: translateY(-50%) rotate(112.5deg); }
+    .s5 { transform: translateY(-50%) rotate(157.5deg); }
+    .s6 { transform: translateY(-50%) rotate(202.5deg); }
+    .s7 { transform: translateY(-50%) rotate(247.5deg); }
+
+    button {
+      margin-top: 8px;
+      /* Красно-золотой градиент */
+      background: linear-gradient(135deg, #cd5c5c, #daa520);
+      border: 2px solid #ffffff;
+      border-radius: 999px;
+      padding: 14px 40px;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .result {
+      margin-top: 24px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #cd5c5c;
+      min-height: 30px;
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #2b5b84;
+    }
+  </style>
+</head>
+
+<body>
+
+
 <div class="card">
     <h1>🎡 Колесо Фортуны</h1>
     <div class="subtitle">Узнай, что ждет нас сегодня... ✨</div>
