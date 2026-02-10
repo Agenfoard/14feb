@@ -1,169 +1,198 @@
-...er;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Рулетка любви 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.card {
-  background: rgba(255,255,255,0.95);
-  border-radius: 24px;
-  padding: 32px 24px;
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-h1 {
-  margin-top: 0;
-  color: #5a2a5f;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #e6d9ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.wheel-container {
-  position: relative;
-  width: 260px;
-  height: 260px;
-  margin: 30px auto;
-}
+    .card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 32px 24px 36px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+    }
 
-.arrow {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 32px;
-  z-index: 10;
-}
+    h1 {
+      margin: 0 0 8px;
+      color: #5a2a5f;
+      font-size: 28px;
+    }
 
-.wheel {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 8px solid #ff8fab;
-  background: conic-gradient(
-    #ffd6e8 0deg 45deg,
-    #e6d9ff 45deg 90deg,
-    #ffe5ec 90deg 135deg,
-    #e0c3fc 135deg 180deg,
-    #ffd6e8 180deg 225deg,
-    #e6d9ff 225deg 270deg,
-    #ffe5ec 270deg 315deg,
-    #e0c3fc 315deg 360deg
-  );
-  transition: transform 3s cubic-bezier(.17,.67,.3,1);
-}
+    .subtitle {
+      font-size: 15px;
+      color: #7a5a80;
+      margin-bottom: 24px;
+    }
 
-.emoji {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 26px;
-  transform-origin: center;
-}
+    .wheel-container {
+      position: relative;
+      width: 260px;
+      height: 260px;
+      margin: 0 auto 24px;
+    }
 
-/* фиксированные позиции по секторам */
-.e0 { transform: rotate(0deg)   translateY(-95px) rotate(0deg); }
-.e1 { transform: rotate(45deg)  translateY(-95px) rotate(-45deg); }
-.e2 { transform: rotate(90deg)  translateY(-95px) rotate(-90deg); }
-.e3 { transform: rotate(135deg) translateY(-95px) rotate(-135deg); }
-.e4 { transform: rotate(180deg) translateY(-95px) rotate(-180deg); }
-.e5 { transform: rotate(225deg) translateY(-95px) rotate(-225deg); }
-.e6 { transform: rotate(270deg) translateY(-95px) rotate(-270deg); }
-.e7 { transform: rotate(315deg) translateY(-95px) rotate(-315deg); }
+    .arrow {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 32px;
+      z-index: 5;
+    }
 
-button {
-  background: linear-gradient(135deg, #ff8fab, #c77dff);
-  border: none;
-  border-radius: 999px;
-  padding: 14px 28px;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
+    .wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 10px solid #ff8fab;
+      background: conic-gradient(
+        #ffe5ec 0deg 45deg,
+        #e6d9ff 45deg 90deg,
+        #ffe5ec 90deg 135deg,
+        #e6d9ff 135deg 180deg,
+        #ffe5ec 180deg 225deg,
+        #e6d9ff 225deg 270deg,
+        #ffe5ec 270deg 315deg,
+        #e6d9ff 315deg 360deg
+      );
+      position: relative;
+      transition: transform 3s cubic-bezier(.17,.67,.3,1);
+    }
 
-button:disabled {
-  opacity: 0.6;
-}
+    .emoji {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 26px;
+    }
 
-.result {
-  margin-top: 24px;
-  font-size: 18px;
-  min-height: 48px;
-  color: #5a2a5f;
-}
+    .e0 { transform: rotate(0deg) translateY(-95px) rotate(0deg); }
+    .e1 { transform: rotate(45deg) translateY(-95px) rotate(-45deg); }
+    .e2 { transform: rotate(90deg) translateY(-95px) rotate(-90deg); }
+    .e3 { transform: rotate(135deg) translateY(-95px) rotate(-135deg); }
+    .e4 { transform: rotate(180deg) translateY(-95px) rotate(-180deg); }
+    .e5 { transform: rotate(225deg) translateY(-95px) rotate(-225deg); }
+    .e6 { transform: rotate(270deg) translateY(-95px) rotate(-270deg); }
+    .e7 { transform: rotate(315deg) translateY(-95px) rotate(-315deg); }
 
-.small {
-  font-size: 14px;
-  opacity: 0.7;
-}
-</style>
+    button {
+      margin-top: 8px;
+      background: linear-gradient(135deg, #ff8fab, #c77dff);
+      border: none;
+      border-radius: 999px;
+      padding: 14px 34px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #5a2a5f;
+      min-height: 28px;
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #8a6a90;
+    }
+  </style>
 </head>
 
 <body>
-<div class="card">
-<h1>🎡 Рулетка любви</h1>
-<p>Можно крутить <b>один раз в день</b> 💕</p>
 
-<div class="wheel-container">
-  <div class="arrow">⬇️</div>
-  <div id="wheel" class="wheel">
-    <div class="emoji e0">☕</div>
-    <div class="emoji e1">🌳</div>
-    <div class="emoji e2">🎬</div>
-    <div class="emoji e3">🍕</div>
-    <div class="emoji e4">💋</div>
-    <div class="emoji e5">🕯️</div>
-    <div class="emoji e6">🎲</div>
-    <div class="emoji e7">🎧</div>
+  <div class="card">
+    <h1>🎡 Рулетка любви</h1>
+    <div class="subtitle">Можно крутить <b>один раз в день</b> 💕</div>
+
+    <div class="wheel-container">
+      <div class="arrow">⬇️</div>
+      <div id="wheel" class="wheel">
+        <div class="emoji e0">☕</div>
+        <div class="emoji e1">🌳</div>
+        <div class="emoji e2">🎬</div>
+        <div class="emoji e3">🍕</div>
+        <div class="emoji e4">💋</div>
+        <div class="emoji e5">🕯️</div>
+        <div class="emoji e6">🎲</div>
+        <div class="emoji e7">🎧</div>
+      </div>
+    </div>
+
+    <button id="spinBtn">Крутить!</button>
+
+    <div id="result" class="result"></div>
+    <div id="hint" class="hint"></div>
   </div>
-</div>
-
-<button id="spinBtn">Крутить!</button>
-
-<div id="result" class="result"></div>
-<div id="hint" class="small"></div>
-</div>
 
 <script>
-const ideas = [
-  "Совместный завтрак",
-  "Прогулка по парку",
-  "Фильм с какао",
-  "Совместная готовка",
-  "Поцелуи без причины",
-  "Вечер свечей",
-  "Настольные игры",
-  "Плейлист друг для друга"
-];
+  const ideas = [
+    "Совместный завтрак",
+    "Прогулка по парку",
+    "Фильм с какао",
+    "Совместная готовка",
+    "Поцелуи без причины",
+    "Вечер свечей",
+    "Настольные игры",
+    "Плейлист друг для друга"
+  ];
 
-const wheel = document.getElementById('wheel');
-const btn = document.getElementById('spinBtn');
-const result = document.getElementById('result');
-const hint = document.getElementById('hint');
+  const wheel = document.getElementById('wheel');
+  const btn = document.getElementById('spinBtn');
+  const result = document.getElementById('result');
+  const hint = document.getElementById('hint');
+
 
 function todayKey() {
-  return new Date().toISOString().slice(0,10);
-}
+    return new Date().toISOString().slice(0,10);
+  }
 
-if (localStorage.getItem('lastSpin') === todayKey()) {
-  btn.disabled = true;
-  result.textContent = localStorage.getItem('lastResult');
-  hint.textContent = "Ты уже крутил сегодня 💕";
-}
+  if (localStorage.getItem('lastSpin') === todayKey()) {
+    btn.disabled = true;
+    result.textContent = localStorage.getItem('lastResult');
+    hint.textContent = "Ты уже крутил сегодня 💕";
+  }
 
-btn.onclick = () => {
-  btn.disabled = true;
-  const angle = 1440 + Math.random() * 360;
-  wheel.style.transform = rotate(${angle}deg);
+  btn.onclick = () => {
+    btn.disabled = true;
+    const angle = 1440 + Math.random() * 360;
+    wheel.style.transform = rotate(${angle}deg);
 
-
-setTimeout(() => {
-    const idea = ideas[Math.floor(Math.random() * ideas.length)];
-    result.textContent = "Твой купон: " + idea;
-    hint.textContent = "До завтра, любимый 💖";
-    localStorage.setItem('lastSpin', todayKey());
-    localStorage.setItem('lastResult', result.textContent);
-  }, 3000);
-};
+    setTimeout(() => {
+      const idea = ideas[Math.floor(Math.random() * ideas.length)];
+      result.textContent = "Твой купон: " + idea;
+      hint.textContent = "До завтра, любимый 💖";
+      localStorage.setItem('lastSpin', todayKey());
+      localStorage.setItem('lastResult', result.textContent);
+    }, 3000);
+  };
 </script>
+
 </body>
 </html>
