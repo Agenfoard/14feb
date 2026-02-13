@@ -448,19 +448,23 @@
     const spinDuration = 5000 + Math.random() * 5000;
     wheel.style.transition = `transform ${spinDuration}ms cubic-bezier(.17,.67,.1,1)`;
 
-    // Вращение на 5-8 полных оборотов + случайный сектор
-    const fullRotations = 5 + Math.floor(Math.random() * 4);
-    const randomAngle = Math.floor(Math.random() * 360);
-    const addedRotation = (360 * fullRotations) + randomAngle;
-    currentRotation += addedRotation;
+    // Вращение на 5-8 полных оборотов + четкая остановка в центре сектора
+    const targetSector = Math.floor(Math.random() * 8);
     
+    // Calculate angle to center of that sector
+    // Each sector is 45 degrees, and we want to point at the center (22.5 degrees offset)
+    const sectorCenterAngle = (targetSector * 45) + 22.5;
+    
+    // Add multiple full rotations (5-8 spins) plus the target angle
+    const fullRotations = 5 + Math.floor(Math.random() * 4);
+    const targetRotation = (360 * fullRotations) + sectorCenterAngle;
+    
+    currentRotation = targetRotation;
     wheel.style.transform = `rotate(${currentRotation}deg)`;
 
     setTimeout(() => {
-      const actualAngle = (360 - (currentRotation % 360)) % 360;
-      const sectorIndex = Math.floor(actualAngle / 45);
-      
-      const prize = prizes[sectorIndex];
+      // We already know which sector we landed on
+      const prize = prizes[targetSector];
       
       // Randomly select one of three descriptions
       const randomDescIndex = Math.floor(Math.random() * 3);
